@@ -7,11 +7,11 @@ require "sunspot_association/version"
 Gem::Specification.new do |s|
   s.name        = "sunspot_association"
   s.version     = SunspotAssociation::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of SunspotAssociation."
-  s.description = "TODO: Description of SunspotAssociation."
+  s.authors     = ["Arjen Oosterkamp"]
+  s.email       = ["mail@arjen.me"]
+  s.homepage    = ""
+  s.summary     = %q{Automatically reindex ActiveRecord associations using Sunspot}
+  s.description = %q{Automatically reindex ActiveRecord associations using Sunspot}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
