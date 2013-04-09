@@ -2,6 +2,7 @@ require 'active_record'
 require 'sunspot_association'
 require 'shoulda/matchers'
 require 'with_model'
+require 'sunspot_test/rspec'
 
 RSpec.configure do |config|
   config.extend WithModel
