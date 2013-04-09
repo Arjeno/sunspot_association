@@ -25,7 +25,11 @@ class User < ActiveRecord::Base
   belongs_to :company
 
   searchable do
-    text :company_name do; company.try(:name) end
+    associate :company, :name, :phone
+
+    # Automatically converts to:
+    # => text :company_name do; company.try(:name) end
+    # => text :company_phone do; company.try(:phone) end
   end
 end
 
@@ -33,7 +37,10 @@ class Order < ActiveRecord::Base
   belongs_to :company
 
   searchable do
-    text :company_name do; company.try(:name) end
+    associate :company, :name
+
+    # Automatically converts to:
+    # => text :company_name do; company.try(:name) end
   end
 end
 
@@ -41,7 +48,9 @@ class Company < ActiveRecord::Base
   has_many :orders
   has_many :users
 
-  sunspot_associate :orders, :users
+  # The below configuration is automatically added by the DSL
+  # => sunspot_associate :orders, :fields => :name
+  # => sunspot_associate :users, :fields => [:name, :phone]
 
   # Or only track changes for the name field
   # => sunspot_associate :orders, :users, :fields => :name
