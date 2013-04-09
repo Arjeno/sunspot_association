@@ -1,4 +1,4 @@
-# sunspot_association [![Gem Version](https://badge.fury.io/rb/sunspot_association.png)](http://badge.fury.io/rb/sunspot_association) [![Build Status](https://secure.travis-ci.org/Arjeno/sunspot_association.png?branch=master)](http://travis-ci.org/Arjeno/sunspot_association) [![Dependency Status](https://gemnasium.com/Arjeno/sunspot_association.png)](https://gemnasium.com/Arjeno/sunspot_association)
+# sunspot_association [![Gem Version](https://badge.fury.io/rb/sunspot_association.png)](http://badge.fury.io/rb/sunspot_association) [![Build Status](https://secure.travis-ci.org/Arjeno/sunspot_association.png?branch=master)](http://travis-ci.org/Arjeno/sunspot_association) [![Dependency Status](https://gemnasium.com/Arjeno/sunspot_association.png)](https://gemnasium.com/Arjeno/sunspot_association) [![Coverage Status](https://coveralls.io/repos/Arjeno/sunspot_association/badge.png?branch=master)](https://coveralls.io/r/Arjeno/sunspot_association)
 
 Automatically reindex ActiveRecord associations using Sunspot.
 
