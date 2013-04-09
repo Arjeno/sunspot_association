@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   belongs_to :company
 
   searchable do
-    text :company_name { company.try(:name) }
+    text :company_name do; company.try(:name) end
   end
 end
 
@@ -33,7 +33,7 @@ class Order < ActiveRecord::Base
   belongs_to :company
 
   searchable do
-    text :company_name { company.try(:name) }
+    text :company_name do; company.try(:name) end
   end
 end
 
