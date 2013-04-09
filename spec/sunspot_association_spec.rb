@@ -36,7 +36,6 @@ describe SunspotAssociation do
     model do
       has_many :orders
       has_many :users
-      sunspot_associate :orders
     end
   end
 

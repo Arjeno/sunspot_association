@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "sunspot_test"
+  s.add_development_dependency "coveralls"
 
   s.add_dependency "activerecord", "~> 3.0"
   s.add_dependency "sunspot_solr"
