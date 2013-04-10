@@ -15,7 +15,6 @@ describe SunspotAssociation::Searchable do
     it { should be_present }
     it { data.instance_variable_get(:@stored).should == stored }
     it { data.type.class.should == type } if type
-
   end
 
   ## Methods
@@ -63,6 +62,80 @@ describe SunspotAssociation::Searchable do
 
   describe :associate do
 
+    describe :setup_association_reindex do
+
+      after(:each) do
+        Company.reset_sunspot_associations!
+      end
+
+      subject { Company.sunspot_association_configuration }
+
+      describe 'default' do
+
+        before(:each) do
+          User.searchable do
+            associate :text, :company, :name
+          end
+        end
+
+        it { should == { :users => { :fields => [:name] } } }
+
+      end
+
+      describe :inverse_name do
+
+        before(:each) do
+          User.searchable do
+            associate :text, :company, :name, :inverse_name => :company_users
+          end
+        end
+
+        it { should == { :company_users => { :fields => [:name] } } }
+
+      end
+
+      describe :index_on_change do
+
+        context 'with true' do
+
+          before(:each) do
+            User.searchable do
+              associate :text, :company, :name, :index_on_change => true
+            end
+          end
+
+          it { should == { :users => { :fields => [] } } }
+
+        end
+
+        context 'with false' do
+
+          before(:each) do
+            User.searchable do
+              associate :text, :company, :name, :index_on_change => false
+            end
+          end
+
+          it { should == {} }
+
+        end
+
+        context 'with array' do
+
+          before(:each) do
+            User.searchable do
+              associate :text, :company, :pretty_address, :index_on_change => [:address]
+            end
+          end
+
+          it { should == { :users => { :fields => [:address] } } }
+
+        end
+
+      end
+
+    end
+
     describe :sunspot_settings do
 
       let(:model) { User }
@@ -77,6 +150,12 @@ describe SunspotAssociation::Searchable do
 
         it_should_behave_like 'a searchable field', :company_name, Sunspot::Type::TextType
 
+        it do
+          Company.sunspot_association_configuration.should == {
+            :users => { :fields => [:name] }
+          }
+        end
+
         context 'with multiple' do
 
           describe 'in one call' do
@@ -89,6 +168,12 @@ describe SunspotAssociation::Searchable do
 
             it_should_behave_like 'a searchable field', :company_name, Sunspot::Type::TextType
             it_should_behave_like 'a searchable field', :company_phone, Sunspot::Type::TextType
+
+            it do
+              Company.sunspot_association_configuration.should == {
+                :users => { :fields => [:name, :phone] }
+              }
+            end
 
           end
 
@@ -103,6 +188,12 @@ describe SunspotAssociation::Searchable do
 
             it_should_behave_like 'a searchable field', :company_name, Sunspot::Type::TextType
             it_should_behave_like 'a searchable field', :company_phone, Sunspot::Type::TextType
+
+            it do
+              Company.sunspot_association_configuration.should == {
+                :users => { :fields => [:name, :phone] }
+              }
+            end
 
           end
 
