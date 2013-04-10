@@ -10,7 +10,10 @@ module SunspotAssociation
       ## Attributes
 
       cattr_accessor :sunspot_association_configuration
-      cattr_accessor :sunspot_association_callbacks
+
+      after_create  Proc.new { |o| o.reindex_sunspot_associations!(:create) }
+      after_update  Proc.new { |o| o.reindex_sunspot_associations!(:update) }
+      after_destroy Proc.new { |o| o.reindex_sunspot_associations!(:destroy) }
 
     end
 
@@ -54,23 +57,10 @@ module SunspotAssociation
 
           self.sunspot_association_configuration[object] = config
         end
-
-        sunspot_association_callbacks!
-      end
-
-      def sunspot_association_callbacks!
-        return true if self.sunspot_association_callbacks == true
-
-        after_create  Proc.new { |o| o.reindex_sunspot_associations!(:create) }
-        after_update  Proc.new { |o| o.reindex_sunspot_associations!(:update) }
-        after_destroy Proc.new { |o| o.reindex_sunspot_associations!(:destroy) }
-
-        self.sunspot_association_callbacks = true
       end
 
       def reset_sunspot_associations!
         self.sunspot_association_configuration = {}
-        self.sunspot_association_callbacks = false
       end
 
     end
