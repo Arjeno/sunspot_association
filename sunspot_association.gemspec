@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Arjen Oosterkamp"]
   s.email       = ["mail@arjen.me"]
   s.homepage    = ""
-  s.summary     = %q{Automatically reindex ActiveRecord associations using Sunspot}
-  s.description = %q{Automatically reindex ActiveRecord associations using Sunspot}
+  s.summary     = %q{Automatic association (re)indexing for your searchable Sunspot models.}
+  s.description = %q{Automatic association (re)indexing for your searchable Sunspot models.}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
@@ -26,5 +26,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "coveralls"
 
   s.add_dependency "activerecord", "~> 3.0"
-  s.add_dependency "sunspot_solr"
+  s.add_dependency "sunspot_rails"
 end
