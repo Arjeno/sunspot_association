@@ -26,5 +26,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "coveralls"
 
   s.add_dependency "activerecord", "~> 3.0"
-  s.add_dependency "sunspot_solr"
+  s.add_dependency "sunspot_rails"
 end
