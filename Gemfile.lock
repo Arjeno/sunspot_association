@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sunspot_association (0.1.2)
+    sunspot_association (0.2.0)
       activerecord (~> 3.0)
       sunspot_rails
 
