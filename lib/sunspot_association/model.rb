@@ -67,6 +67,8 @@ module SunspotAssociation
 
     # Main callback method, checks if it should reindex an association
     def reindex_sunspot_associations!(event)
+      return false unless self.class.sunspot_associate?
+
       self.class.sunspot_association_configuration.each do |object, config|
         case event
         when :create
@@ -82,6 +84,8 @@ module SunspotAssociation
     # Checks if an association should be reindexed
     # => reindex_sunspot_association?(:orders) => true
     def reindex_sunspot_association?(object)
+      return false unless self.class.sunspot_associate?
+
       if (config = (self.class.sunspot_association_configuration || {})[object]).present?
         if config[:fields].present?
           return ! (changed & (config[:fields] || []).map(&:to_s)).empty?
