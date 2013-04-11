@@ -65,8 +65,10 @@ module SunspotAssociation
     def setup_association_reindex(association_name, fields, options={})
       searchable_class  = @setup.clazz
       association       = searchable_class.reflect_on_association(association_name)
-      association_class = association.klass
+      association_class = association.try(:klass)
       inverse_name      = options[:inverse_name] || searchable_class.name.pluralize.downcase.to_sym
+
+      return false if association_class.nil?
 
       association_class.sunspot_associate inverse_name, :fields => fields
     end
