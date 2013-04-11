@@ -20,7 +20,7 @@ module SunspotAssociation
     module ClassMethods
 
       def sunspot_associate?
-        self.sunspot_association_configuration != {}
+        self.sunspot_association_configuration.present?
       end
 
       # Reindex associations when a model changes
