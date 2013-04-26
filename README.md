@@ -31,7 +31,7 @@ It will also hook into `Company` and watch it for changes
 Add to your Gemfile:
 
 ```ruby
-gem 'sunspot_association', '~> 0.2.0'
+gem 'sunspot_association', '~> 0.2.1'
 ```
 
 ## Example
