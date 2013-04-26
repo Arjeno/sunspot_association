@@ -33,7 +33,7 @@ module SunspotAssociation
       fields.each do |field|
         name = [association_name, field].join('_')
         self.send(type, name, options) do
-          self.send(association_name).send(field)
+          self.send(association_name).try(field)
         end
       end
 
