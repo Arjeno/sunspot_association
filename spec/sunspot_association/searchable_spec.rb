@@ -258,6 +258,29 @@ describe SunspotAssociation::Searchable do
 
     end
 
+    context 'when declaring searchable before the association' do
+
+      with_model :Order do
+        table do |t|
+          t.belongs_to :user
+          t.timestamps
+        end
+
+        model do
+          include Sunspot::Rails::Searchable
+          searchable do
+            associate :text, :user, :name
+          end
+          belongs_to :user
+        end
+      end
+
+      subject { User.sunspot_association_configuration }
+
+      it { should == { :orders => { :fields => [:name] } } }
+
+    end
+
   end
 
 end
